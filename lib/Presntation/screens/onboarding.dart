@@ -4,7 +4,7 @@ import 'package:gdg_test/Presntation/screens/nav_page.dart';
 import '../widgets/onboarding_page.dart';
 
 class OnboardingScreen extends StatefulWidget {
-  const OnboardingScreen({Key? key}) : super(key: key);
+  const  OnboardingScreen({Key? key}) : super(key: key);
 
   @override
   _OnboardingScreenState createState() => _OnboardingScreenState();
@@ -16,17 +16,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   final List<OnboardingModel> onboardingPages = [
     OnboardingModel(
-      image: 'assets/images/onboarding1.png', // Replace with actual paths
+      image: 'assets/onboarding1.png', // Replace with actual paths
       title: 'Be examined by the best doctors',
       description: 'Exercitation et enim necessitatibus. Voluptatibus harum.',
     ),
     OnboardingModel(
-      image: 'assets/images/onboarding2.png',
+      image: 'assets/onboarding2.png',
       title: 'Follow your reservations from home',
       description: 'Exercitation et enim necessitatibus. Voluptatibus harum.',
     ),
     OnboardingModel(
-      image: 'assets/images/onboarding3.png',
+      image: 'assets/onboarding3.png',
       title: 'All through our app',
       description: 'Exercitation et enim necessitatibus. Voluptatibus harum.',
     ),
@@ -54,7 +54,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             right: 20,
             child: TextButton(
               onPressed: () {
-                BottomNav();
+                CustomBottomNavigationBar();
                 // Navigate to next screen
               },
               child: const Text('Skip', style: TextStyle(color: Colors.orange)),
@@ -86,9 +86,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       floatingActionButton: _currentIndex == onboardingPages.length - 1
           ? FloatingActionButton(
               onPressed: () {
-                // Navigate to the next screen
-              },
-              child: const Icon(Icons.arrow_forward),
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => CustomBottomNavigationBar()),
+          );
+        },
+        child: const Icon(Icons.arrow_forward),
             )
           : null,
     );

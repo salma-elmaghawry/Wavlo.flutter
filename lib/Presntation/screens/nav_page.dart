@@ -1,25 +1,21 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:gdg_test/Presntation/screens/page1.dart';
+import 'package:gdg_test/Presntation/screens/chat_screen.dart';
 import 'package:gdg_test/Presntation/screens/page2.dart';
 import 'package:gdg_test/Presntation/screens/page3.dart';
-import 'package:gdg_test/Presntation/screens/page4.dart';
 
-class BottomNav extends StatefulWidget {
+class CustomBottomNavigationBar extends StatefulWidget {
   @override
-  _BottomNavState createState() => _BottomNavState();
+  _CustomBottomNavigationBarState createState() => _CustomBottomNavigationBarState();
 }
 
-class _BottomNavState extends State<BottomNav> {
+class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   int _currentIndex = 0;
 
-  // List of pages imported from separate files
   final List<Widget> _pages = [
-    Page1(),
+    ChatScreen(),
     page2(),
     page3(),
-    page4(),
+    page3(),
   ];
 
   @override
@@ -38,38 +34,70 @@ class _BottomNavState extends State<BottomNav> {
             ),
           ],
         ),
-        child: BottomNavigationBar(
-          currentIndex: _currentIndex,
-          onTap: (index) {
-            setState(() {
-              _currentIndex = index;
-            });
-          },
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          selectedItemColor: Colors.brown,
-          unselectedItemColor: Colors.black54,
-          selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: "Home",
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            BottomNavItem(
+              icon: Icons.chat,
+              label: 'Chats',
+              isActive: _currentIndex == 0,
+              onTap: () => setState(() => _currentIndex = 0),
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.phone),
-              label: "Call",
+            BottomNavItem(
+              icon: Icons.call,
+              label: 'Calls',
+              isActive: _currentIndex == 1,
+              onTap: () => setState(() => _currentIndex = 1),
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: "Profile",
+            BottomNavItem(
+              icon: Icons.people,
+              label: 'Contacts',
+              isActive: _currentIndex == 2,
+              onTap: () => setState(() => _currentIndex = 2),
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: "Settings",
+            BottomNavItem(
+              icon: Icons.settings,
+              label: 'Settings',
+              isActive: _currentIndex == 3,
+              onTap: () => setState(() => _currentIndex = 3),
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class BottomNavItem extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final bool isActive;
+  final VoidCallback onTap;
+
+  const BottomNavItem({
+    required this.icon,
+    required this.label,
+    required this.isActive,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, color: isActive ? Colors.orange : Colors.grey),
+          Text(
+            label,
+            style: TextStyle(
+              color: isActive ? Colors.orange : Colors.grey,
+              fontSize: 12,
+            ),
+          ),
+        ],
       ),
     );
   }
