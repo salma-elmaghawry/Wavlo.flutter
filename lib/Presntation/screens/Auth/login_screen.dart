@@ -20,6 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
       if (response.statusCode == 200) {
         print("Login successful: ${response.data}");
+        Navigator.pushReplacementNamed(context, '/chat');
       } else {
         print("Login failed: ${response.statusCode}");
       }

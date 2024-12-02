@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gdg_test/Data/onboarding_model.dart';
+import 'package:gdg_test/Presntation/screens/Auth/login_screen.dart';
 import 'package:gdg_test/Presntation/screens/nav_page.dart';
 import '../widgets/onboarding_page.dart';
 
@@ -88,7 +89,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => CustomBottomNavigationBar()),
+            MaterialPageRoute(builder: (context) => LoginScreen()),
           );
         },
         child: const Icon(Icons.arrow_forward),

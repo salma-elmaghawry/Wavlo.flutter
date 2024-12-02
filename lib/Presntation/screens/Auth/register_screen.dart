@@ -26,6 +26,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
       if (response.statusCode == 201) {
         print("Registration successful");
+        Navigator.pushReplacementNamed(context, '/chat');
       } else {
         print("Registration failed: ${response.statusCode}");
       }
